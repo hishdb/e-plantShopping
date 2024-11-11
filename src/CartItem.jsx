@@ -19,7 +19,6 @@ const CartItem = ({ onContinueShopping }) => {
 
 
   const handleIncrement = (item) => {
-    console.log("iteeeem : ", item);
     var newQuantity = item.quantity;
     newQuantity ++;
     dispatch(updateQuantity({ name : item.name, quantity : newQuantity}));
@@ -29,7 +28,9 @@ const CartItem = ({ onContinueShopping }) => {
     console.log("iteeeem : ", item);
     var newQuantity = item.quantity;
     newQuantity --;
-    dispatch(updateQuantity({ name : item.name, quantity : newQuantity}));
+    if(newQuantity>0){
+        dispatch(updateQuantity({ name : item.name, quantity : newQuantity}));
+    }
   };
 
   const handleRemove = (item) => {
@@ -38,6 +39,9 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    console.log("iteeeem 0",item)
+    const costToInt = parseFloat(item.cost.replace("$",""));
+    return item.quantity * costToInt;
   };
 
   return (
