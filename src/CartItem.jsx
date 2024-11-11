@@ -19,10 +19,17 @@ const CartItem = ({ onContinueShopping }) => {
 
 
   const handleIncrement = (item) => {
+    console.log("iteeeem : ", item);
+    var newQuantity = item.quantity;
+    newQuantity ++;
+    dispatch(updateQuantity({ name : item.name, quantity : newQuantity}));
   };
 
   const handleDecrement = (item) => {
-   
+    console.log("iteeeem : ", item);
+    var newQuantity = item.quantity;
+    newQuantity --;
+    dispatch(updateQuantity({ name : item.name, quantity : newQuantity}));
   };
 
   const handleRemove = (item) => {
