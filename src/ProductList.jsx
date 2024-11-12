@@ -254,6 +254,7 @@ function ProductList() {
     if(plant){
         dispatch(addItem(plant));
         setaddedToCart((prevState)=> ({...prevState, [plant.name] : true}));
+     
     }
   }
     return (
@@ -287,8 +288,11 @@ function ProductList() {
                                 <div className="product-card" key={plantIndex}>
                                 <img className="product-image" src={plant.image} alt={plant.name} />
                                 <div className="product-title">{plant.name}</div>
-                                {/*Similarly like the above plant.name show other details like description and cost*/}
-                                <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                    <button 
+                                     className={addedToCart[plant.name] ? "product-button-disabled" : "product-button"}
+                                      onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]}>
+                                        {addedToCart[plant.name] ? "Added to card" : "Add to card"}
+                                        </button>
                                 </div>
                             ))
                         }
